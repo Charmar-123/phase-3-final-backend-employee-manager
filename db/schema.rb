@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 2023_05_07_220409) do
 
   create_table "tasks", force: :cascade do |t|
     t.string "description"
-    t.boolean "status"
+    t.boolean "complete"
     t.integer "employee_id"
   end
 
