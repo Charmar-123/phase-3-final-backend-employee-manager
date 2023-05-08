@@ -7,4 +7,9 @@ class ApplicationController < Sinatra::Base
     employees.to_json include: [:tasks]
   end
 
+  post "/tasks" do
+    task = Task.create(params)
+    task.to_json
+  end
+
 end
