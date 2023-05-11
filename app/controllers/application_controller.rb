@@ -8,8 +8,14 @@ class ApplicationController < Sinatra::Base
   end
 
   post "/employees" do
-    employee = Employee.create(params)
-    employee.to_json
+    employee = Employee.create(name: params[:name], position: params[:position], image_url: params[:image_url])
+    tasks = params[:tasks].map { |task| Task.create({
+      complete: false,
+      description: task,
+      employee_id: employee.id
+    })}
+    employee.to_json include: [:tasks]
+  end
 
   post "/tasks" do
     task = Task.create(params)
