@@ -18,8 +18,12 @@ class ApplicationController < Sinatra::Base
   end
 
   post "/tasks" do
-    task = Task.create(params)
-    task.to_json
+    tasks = params[:newTasks].map { |task| Task.create({
+      complete: false,
+      description: task,
+      employee_id: params[:id]
+    })}
+    tasks.to_json
   end
   
   patch "/tasks/:id" do
