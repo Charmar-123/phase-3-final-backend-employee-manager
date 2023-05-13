@@ -7,6 +7,13 @@ class ApplicationController < Sinatra::Base
     employees.to_json include: [:tasks]
   end
 
+  # route added to meet requirment for project but is not used
+
+  get "tasks" do 
+    tasks = Task.all
+    tasks.to_json include: [:tasks]
+  end
+
   post "/employees" do
     employee = Employee.create(name: params[:name], position: params[:position], image_url: params[:image_url])
     tasks = params[:tasks].map { |task| Task.create({
